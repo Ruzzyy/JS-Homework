@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <script>
+        //Класс Container
+        function Container() {
+            this.htmlCode = '';
+        }
+
+        Container.prototype.render = function () {
+            return this.htmlCode;
+        };
+		
+		Container.prototype.remove = function() {
+			var elem = document.getElementById(this.id);
+			var message = document.createTextNode('Меню удалено!');
+			elem.parentElement.replaceChild(message, elem);
+		}
+
+        //Класс Меню
+        /**
+         * Класс меню.
+         *
+         * @param myId ID меню
+         * @param myClass Класс
+         * @param items Массив пунктов
+         * @constructor
+         */
+        function Menu(myId, myClass, items) {
+            Container.call(this);
+            this.id = myId;
+            this.className = myClass;
+            this.items = items;
+        }
+
+        //Наследование от контейнер (прототипное)
+        Menu.prototype = Object.create(Container.prototype);
+        Menu.prototype.constructor = Menu;
+
+        Menu.prototype.render = function () {
+            var result = '<ul class="' + this.className + '" id="' + this.id + '">';
+
+            for (var i = 0; i < this.items.length; i++) {
+                if(this.items[i] instanceof MenuItem)
+                {
+                    result += this.items[i].render();
+                }
+            }
+            result += '</ul>';
+            this.htmlCode = result;
+            return result;
+        };
+
+        //Класс Пункт меню
+        function MenuItem(href, title) {
+            this.href = href;
+            this.title = title;
+        }
+
+        MenuItem.prototype.render = function () {
+            return '<li><a href="' + this.href + '">' + this.title + '</a></li>';
+        };
+		
+		//Класс меню подпунктов
+		function SubMenu(myId, myClass, items) {
+			Menu.call(this, myId, myClass, items);
+		}
+		
+		//Наследуем меню подпунктов от обычного меню
+		SubMenu.prototype = Object.create(Menu.prototype);
+		SubMenu.prototype.constructor = SubMenu.prototype;
+		
+		//Создаем метод, который генерирует меню подпунктов
+		SubMenu.prototype.render = function() {
+			var result = '<ul class="' + this.className + '" id="' + this.id + '">';
+			
+			for (var i = 0; i < this.items.length; i++) {
+				if (this.items[i] instanceof MenuItem) {
+					result += this.items[i].render();
+				} else if (this.items[i] instanceof SubMenu) {
+					result += this.items[i].render();
+				}
+			}
+			
+			result += '</ul>';
+            this.htmlCode = result;
+            return result;
+		}
+
+        var menu = new SubMenu('menu', 'menu', [
+			new MenuItem('#', 'Главная'),
+			new MenuItem('#', 'О нас'),
+			new MenuItem('#', 'Магазины'),
+			new SubMenu('submenu', 'submenu', [
+				new MenuItem('#', 'Продуктовый'),
+				new MenuItem('#', 'Спортивный')
+			]),
+			new MenuItem('#', 'Контакты')
+		]);
+
+        window.onload = function () {
+            document.getElementById('menu').innerHTML = menu.render();
+			//menu.remove();
+        };
+    </script>
+</head>
+<body>
+<div id="menu"></div>
+</body>
+</html>

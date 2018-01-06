@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css">
+	<script src="jquery-3.2.1.min.js"></script>
+	<title>Form</title>
+</head>
+
+<body>
+	<div id="feedback">
+		<div class="feedback__title">Обратная связь</div>
+		<div class="feedback__form">
+			<form action="#" onsubmit="event.preventDefault();">
+				<label for="feedback__name">
+					<input id="feedback__name" class="feedback__field" type="text" placeholder="Иванов Иван Иванович"> </label>
+				<div id="feedback__errorName" class="feedback__error">Имя должно состоять только из буквенных символов.</div>
+				<label for="feedback__phone">
+					<input id="feedback__phone" class="feedback__field" type="text" placeholder="+7(000)000-0000"> </label>
+				<div id="feedback__errorPhone" class="feedback__error">Укажите телефон в формате:<i>+7(000)000-0000</i></div>
+				<label for="feedback__email">
+					<input id="feedback__email" class="feedback__field" type="text" placeholder="email@yandex.ru"> </label>
+				<div id="feedback__errorEmail" class="feedback__error">Укажите e-mail в одном из форматов: <i>mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru</i></div>
+				<label for="feedback__text">
+					<textarea id="feedback__text" class="feedback__field" maxlength="136" placeholder="Ваше сообщение"></textarea>
+				</label>
+				<label for="feedback__cities">
+					<select name="feedback__cities" class="feedback__cities feedback__field"></select>
+				</label>
+				<button id="btnSubmit">Отправить</button>
+				<div id="feedback__success">Данные успешно отправлены.</div>
+			</form>
+		</div>
+	</div>
+	<script src="validateFeedBackForm.js"></script>
+	<script src="selectCities.js"></script>
+</body>
+
+</html>

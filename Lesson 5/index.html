@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Basket</title>
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="Container.js"></script>
+	<script src="Goods.js"></script>
+	<script src="Basket.js"></script>
+	<script>
+        $(document).ready(function() {
+            var goods = new Goods(123, 'Коврик для мыши', 500);
+            goods.render($('#goods'));
+        });
+    </script>
+</head>
+<body>
+	<div id="goods"></div>
+</body>
+</html>
