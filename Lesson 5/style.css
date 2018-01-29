@@ -1,0 +1,16 @@
+.goods {
+    float: left;
+    margin-left: 1%;
+    width: 12%;
+    background-color: orangered;
+    text-align: center;
+}
+
+.buyGoods {
+    float: left;
+}
+
+.deleteGoods {
+    float: right;
+}
+

@@ -3,6 +3,6 @@ function Container(id) {
     this.htmlCode = '';
 }
 
-Container.prototype.render = function() {
+Container.prototype.render = function () {
     return this.htmlCode;
 };

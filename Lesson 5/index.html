@@ -1,20 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Basket</title>
-	<script src="jquery-3.2.1.min.js"></script>
-	<script src="Container.js"></script>
-	<script src="Goods.js"></script>
-	<script src="Basket.js"></script>
-	<script>
-        $(document).ready(function() {
-            var goods = new Goods(123, 'Коврик для мыши', 500);
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Корзина товаров</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.2.1.js"></script>
+    <script src="Container.js"></script>
+    <script src="Goods.js"></script>
+    <script src="Basket.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Отображение товара
+            var goods = new Goods(01, 'Коврик для мыши', 500);
             goods.render($('#goods'));
+
+            // Отображение корзины
+            var basket = new Basket('basket');
+            basket.render($('#basket_wrapper'));
+
+            $('.buyGoods').on('click', function () {
+                var idProduct = parseInt($(this).attr('data-id'));
+                var quantity = 1;
+                var price = parseInt($(this).parent().find('.goodsPrice').text())
+
+                basket.add(idProduct, quantity, price);
+            });
+
+            $('.deleteGoods').on('click', function () {
+                var idProduct = parseInt($(this).attr('data-id'));
+
+                basket.remove(idProduct);
+            });
         });
     </script>
 </head>
 <body>
-	<div id="goods"></div>
+<div id="basket_wrapper"></div>
+<hr>
+<div id="goods"></div>
 </body>
 </html>
