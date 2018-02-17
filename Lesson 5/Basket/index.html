@@ -7,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Корзина товаров</title>
     <link rel="stylesheet" href="style.css">
-    <script src="jquery-3.2.1.js"></script>
-    <script src="Container.js"></script>
-    <script src="Goods.js"></script>
-    <script src="Basket.js"></script>
+    <script src="script/jquery-3.2.1.js"></script>
+    <script src="script/Container.js"></script>
+    <script src="script/Goods.js"></script>
+    <script src="script/Basket.js"></script>
     <script>
         $(document).ready(function () {
             // Отображение товара
@@ -24,7 +24,7 @@
             $('.buyGoods').on('click', function () {
                 var idProduct = parseInt($(this).attr('data-id'));
                 var quantity = 1;
-                var price = parseInt($(this).parent().find('.goodsPrice').text())
+                var price = parseInt($(this).parent().find('.goodsPrice').text());
 
                 basket.add(idProduct, quantity, price);
             });

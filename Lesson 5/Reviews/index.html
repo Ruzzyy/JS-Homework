@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reviews</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.2.1.js"></script>
+    <script src="Container.js"></script>
+    <script src="Review.js"></script>
+    <script>
+        $(document).ready(function () {
+            var review = new Review($('#reviews'));
+            review.render();
+
+            $('.btnSubmit').on('click', function () {
+                var $text = $('.fieldReview');
+                if ($text.val() !== '') {
+                    review.add($text.val());
+                }
+            });
+
+            $('.btnApprove').on('click', function () {
+                console.log('123');
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="reviews"></div>
+<div id="fieldForReview">
+    <textarea class="fieldReview" placeholder="Оставьте здесь Ваш отзыв."></textarea>
+    <button class="btnSubmit">Отправить</button>
+</div>
+</body>
+</html>
